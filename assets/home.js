@@ -183,24 +183,34 @@
     });
     snakes.push({ el: snake, flow: snake.querySelector(".flow"), stops: stops });
   });
+  var mobileTimeline = window.matchMedia("(max-width: 760px)");
   function updateSnakes() {
     var vh = window.innerHeight || 1;
     snakes.forEach(function (s) {
       if (s.el.offsetParent === null) return; /* hidden track */
       var r = s.el.getBoundingClientRect();
-      var p = (vh * 0.8 - r.top) / (r.height * 0.92 || 1);
-      p = Math.max(0, Math.min(1, p));
-      if (s.flow) s.flow.style.strokeDashoffset = (100 - p * 100).toFixed(2);
-      s.el.style.setProperty("--mp", p.toFixed(3));
-      s.stops.forEach(function (st) {
-        st.el.classList.toggle("lit", p * 100 >= st.y - 2);
-      });
+      if (mobileTimeline.matches) {
+        /* phone: the purple line's tip follows the reader down the list,
+           filling node-to-node; each step lights the moment it's reached */
+        var fillPx = Math.max(0, Math.min(vh * 0.8 - r.top, r.height));
+        s.el.style.setProperty("--mpx", fillPx.toFixed(0) + "px");
+        s.stops.forEach(function (st) {
+          st.el.classList.toggle("lit", fillPx >= st.el.offsetTop + 24);
+        });
+      } else {
+        var p = (vh * 0.8 - r.top) / (r.height * 0.92 || 1);
+        p = Math.max(0, Math.min(1, p));
+        if (s.flow) s.flow.style.strokeDashoffset = (100 - p * 100).toFixed(2);
+        s.stops.forEach(function (st) {
+          st.el.classList.toggle("lit", p * 100 >= st.y - 2);
+        });
+      }
     });
   }
   function litAllSnakes() {
     snakes.forEach(function (s) {
       if (s.flow) s.flow.style.strokeDashoffset = "0";
-      s.el.style.setProperty("--mp", "1");
+      s.el.style.setProperty("--mpx", "9999px");
       s.stops.forEach(function (st) { st.el.classList.add("lit"); });
     });
   }
