@@ -165,6 +165,14 @@
     });
   }
 
+  /* close the phone menu when a destination is picked */
+  var menuToggle = document.getElementById("menu");
+  if (menuToggle) {
+    document.querySelectorAll("nav.links a").forEach(function (a) {
+      a.addEventListener("click", function () { menuToggle.checked = false; });
+    });
+  }
+
   /* ── Scroll-driven snake: the road draws and lights up as you scroll ── */
   var snakes = [];
   document.querySelectorAll(".snake").forEach(function (snake) {
