@@ -184,6 +184,7 @@
     snakes.push({ el: snake, flow: snake.querySelector(".flow"), stops: stops });
   });
   var mobileTimeline = window.matchMedia("(max-width: 760px)");
+  var wideScreen = window.matchMedia("(min-width: 881px)");
   function updateSnakes() {
     var vh = window.innerHeight || 1;
     snakes.forEach(function (s) {
@@ -297,10 +298,14 @@
         });
       }
       if (!reduceMotion) {
-        if (sky) sky.style.transform = "translate3d(0," + (Math.min(top, 900) * 0.18).toFixed(1) + "px,0)";
-        if (shelfTilt) {
-          var sy = Math.min(top, 900) * 0.12;
-          shelfTilt.style.setProperty("--sy", sy.toFixed(1) + "px");
+        /* the parallax layers are desktop-only — phones skip the extra
+           per-frame writes on their largest layers */
+        if (wideScreen.matches) {
+          if (sky) sky.style.transform = "translate3d(0," + (Math.min(top, 900) * 0.18).toFixed(1) + "px,0)";
+          if (shelfTilt) {
+            var sy = Math.min(top, 900) * 0.12;
+            shelfTilt.style.setProperty("--sy", sy.toFixed(1) + "px");
+          }
         }
         updateSnakes();
       }
