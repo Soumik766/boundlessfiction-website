@@ -1419,6 +1419,8 @@ footer {
     position: static;
     padding-left: 0;
   }
+  /* dim rail + a vivid fill that grows with scroll, so you can see
+     exactly how far along the road you are */
   .stops::before {
     content: "";
     position: absolute;
@@ -1426,8 +1428,19 @@ footer {
     top: 10px; bottom: 10px;
     width: 3px;
     border-radius: 3px;
-    background: linear-gradient(180deg, var(--violet), var(--glow));
-    opacity: 0.5;
+    background: rgba(123, 92, 240, 0.22);
+  }
+  .stops::after {
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: 10px;
+    width: 3px;
+    height: calc(var(--mp, 0) * (100% - 20px));
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--violet), #cf59c8, var(--amber));
+    box-shadow: 0 0 12px rgba(123, 92, 240, 0.75);
+    transition: height 0.25s linear;
   }
   .snake { position: relative; }
   .stop {

@@ -64,6 +64,7 @@
     "dn.app": "অ্যাপ নামাও",
     "foot.privacy": "প্রাইভেসি পলিসি",
     "foot.terms": "সেবার শর্তাবলি",
+    "foot.cookies": "কুকিজ",
 
     "hero.badge": "গুগল প্লে-তে এখন লাইভ",
     "hero.h1a": "পড়ো। লেখো।",
@@ -190,6 +191,7 @@
       var p = (vh * 0.8 - r.top) / (r.height * 0.92 || 1);
       p = Math.max(0, Math.min(1, p));
       if (s.flow) s.flow.style.strokeDashoffset = (100 - p * 100).toFixed(2);
+      s.el.style.setProperty("--mp", p.toFixed(3));
       s.stops.forEach(function (st) {
         st.el.classList.toggle("lit", p * 100 >= st.y - 2);
       });
@@ -198,6 +200,7 @@
   function litAllSnakes() {
     snakes.forEach(function (s) {
       if (s.flow) s.flow.style.strokeDashoffset = "0";
+      s.el.style.setProperty("--mp", "1");
       s.stops.forEach(function (st) { st.el.classList.add("lit"); });
     });
   }
