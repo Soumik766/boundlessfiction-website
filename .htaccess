@@ -1,0 +1,20 @@
+# Boundless Fiction — canonical host + basic caching
+
+RewriteEngine On
+
+# www → non-www, single 301 hop, https preserved.
+# Google was crawling www.boundlessfiction.com as a full duplicate of the
+# site; one canonical host consolidates indexing signals.
+RewriteCond %{HTTP_HOST} ^www\.boundlessfiction\.com$ [NC]
+RewriteRule ^(.*)$ https://boundlessfiction.com/$1 [R=301,L]
+
+# Browser caching — images are immutable uploads; css/js carry ?v= busting.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+</IfModule>
