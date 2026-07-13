@@ -104,7 +104,8 @@
     document.documentElement.classList.toggle("lang-bn", bn);
     var btn = document.querySelector(".lang-btn");
     if (btn) {
-      btn.textContent = bn ? "EN" : "বাং";
+      var label = btn.querySelector(".lang-label");
+      if (label) label.textContent = bn ? "EN" : "বাং";
       btn.setAttribute("aria-label", bn ? "Switch to English" : "বাংলায় দেখুন");
     }
     try { localStorage.setItem("bf-lang", lang); } catch (e) { /* private mode */ }
@@ -121,6 +122,35 @@
     });
   }
 
+  /* ── Scroll-driven snake: the road draws and lights up as you scroll ── */
+  var snakes = [];
+  document.querySelectorAll(".snake").forEach(function (snake) {
+    var stops = [];
+    snake.querySelectorAll(".stop").forEach(function (li) {
+      stops.push({ el: li, y: parseFloat(li.style.getPropertyValue("--y")) || 0 });
+    });
+    snakes.push({ el: snake, flow: snake.querySelector(".flow"), stops: stops });
+  });
+  function updateSnakes() {
+    var vh = window.innerHeight || 1;
+    snakes.forEach(function (s) {
+      if (s.el.offsetParent === null) return; /* hidden track */
+      var r = s.el.getBoundingClientRect();
+      var p = (vh * 0.8 - r.top) / (r.height * 0.92 || 1);
+      p = Math.max(0, Math.min(1, p));
+      if (s.flow) s.flow.style.strokeDashoffset = (100 - p * 100).toFixed(2);
+      s.stops.forEach(function (st) {
+        st.el.classList.toggle("lit", p * 100 >= st.y - 2);
+      });
+    });
+  }
+  function litAllSnakes() {
+    snakes.forEach(function (s) {
+      if (s.flow) s.flow.style.strokeDashoffset = "0";
+      s.stops.forEach(function (st) { st.el.classList.add("lit"); });
+    });
+  }
+
   /* ── Roadmap tabs ──────────────────────────────────────────────────── */
   var tabs = document.querySelectorAll(".tab");
   tabs.forEach(function (tab) {
@@ -132,23 +162,17 @@
         if (panel) {
           panel.hidden = !selected;
           if (selected) {
-            // Replay the entrance + snake draw for the shown track.
             panel.classList.remove("tab-in");
             void panel.offsetWidth; /* restart animations */
             panel.classList.add("tab-in");
-            var snake = panel.querySelector(".snake");
-            if (snake) {
-              snake.classList.remove("in");
-              void snake.offsetWidth;
-              snake.classList.add("in");
-            }
           }
         }
       });
+      if (reduceMotion) { litAllSnakes(); } else { updateSnakes(); }
     });
   });
 
-  /* ── Scroll reveals + snake draw ───────────────────────────────────── */
+  /* ── Scroll reveals ────────────────────────────────────────────────── */
   if (!reduceMotion && "IntersectionObserver" in window) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -161,21 +185,22 @@
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
     );
-    document.querySelectorAll(".rv, .snake").forEach(function (el) {
+    document.querySelectorAll(".rv").forEach(function (el) {
       io.observe(el);
     });
   } else {
     // Motion off or ancient browser: show everything.
-    document.querySelectorAll(".rv, .snake").forEach(function (el) {
+    document.querySelectorAll(".rv").forEach(function (el) {
       el.classList.add("in");
     });
   }
 
-  /* ── Reading progress + header state ───────────────────────────────── */
+  /* ── Reading progress + header state + scroll-linked motion ───────── */
   var bar = document.createElement("div");
   bar.id = "progress";
   document.body.appendChild(bar);
   var header = document.querySelector("header");
+  var shelfTilt = document.querySelector(".shelf-tilt");
   var scrollTick = false;
   function onScroll() {
     if (scrollTick) return;
@@ -185,10 +210,19 @@
       var max = doc.scrollHeight - doc.clientHeight;
       bar.style.transform = "scaleX(" + (max > 0 ? doc.scrollTop / max : 0) + ")";
       if (header) header.classList.toggle("scrolled", doc.scrollTop > 10);
+      if (!reduceMotion) {
+        if (shelfTilt) {
+          var sy = Math.min(doc.scrollTop, 900) * 0.12;
+          shelfTilt.style.setProperty("--sy", sy.toFixed(1) + "px");
+        }
+        updateSnakes();
+      }
       scrollTick = false;
     });
   }
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  if (reduceMotion) { litAllSnakes(); }
   onScroll();
 
   /* ── Pointer-driven flourishes (desktop, motion-ok only) ───────────── */

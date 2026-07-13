@@ -60,8 +60,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Albert+Sans:wght@400;600;700;800&family=Noto+Serif+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/home.css?v=3">
-<script defer src="assets/home.js?v=3"></script>
+<link rel="stylesheet" href="assets/home.css?v=4">
+<script defer src="assets/home.js?v=4"></script>
 </head>
 <body>
 
@@ -70,7 +70,10 @@
     <a class="logo" href="index.html"><img class="mark" src="assets/logo.png" alt="Boundless Fiction logo">Boundless&nbsp;<em>Fiction</em></a>
     <input type="checkbox" id="menu" class="menu-toggle" hidden aria-hidden="true">
     <div class="nav-right">
-      <button class="lang-btn" type="button" aria-label="Switch language">বাং</button>
+      <button class="lang-btn" type="button" aria-label="Switch language">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        <span class="lang-label">বাং</span>
+      </button>
       <label for="menu" class="menu-btn" aria-label="Menu"><span></span><span></span><span></span></label>
     </div>
     <nav class="links">
@@ -100,6 +103,7 @@
     </div>
 
     <div class="wrap hero-grid">
+      <span class="hero-glyph bn-f" aria-hidden="true">গল্প</span>
       <div class="hero-copy">
         <span class="live-badge rv"><span class="dot"></span><span data-i18n="hero.badge">Now live on Google Play</span></span>
         <h1 class="rv" style="--d:.07s">
@@ -117,9 +121,11 @@
         </div>
         <p class="hero-note rv" style="--d:.36s"><span class="dot" aria-hidden="true"></span><span data-i18n="hero.note">Real series by real creators — live in the app right now.</span></p>
       </div>
+    </div>
 
-      <!-- The night shelf: real covers from the app drifting past in 3D -->
-      <div class="shelf rv" style="--d:.24s" role="img" aria-label="Covers of real series published on Boundless Fiction, drifting across a tilted shelf">
+    <!-- The night shelf: the whole right side of the screen is a drifting
+         3D wall of real covers from the app -->
+    <div class="shelf rv" style="--d:.24s" role="img" aria-label="Covers of real series published on Boundless Fiction, drifting across a tilted shelf">
         <div class="shelf-tilt">
           <div class="lane" style="--t:46s">
             <div class="lane-track">
@@ -220,8 +226,7 @@
             </div>
           </div>
         </div>
-        <span class="shelf-fog" aria-hidden="true"></span>
-      </div>
+      <span class="shelf-fog" aria-hidden="true"></span>
     </div>
   </section>
 
@@ -247,30 +252,30 @@
   <section class="why section" id="why">
     <div class="wrap">
       <div class="kicker rv" data-i18n="why.kicker">Why Boundless Fiction</div>
-      <h2 class="rv bn-lead" style="--d:.06s">গল্প তো আছেই।<br>ছাপবে কোথায়?</h2>
+      <h2 class="rv bn-lead" style="--d:.06s">গল্পের অভাব ছিল না।<br>অভাব ছিল একটা ঘরের।</h2>
       <p class="why-sub rv" style="--d:.12s" data-i18n="why.sub">The stories were always here. A home for them wasn't.</p>
 
       <div class="why-grid">
         <article class="why-card rv" style="--d:.08s">
-          <div class="w-ic">🖋️</div>
+          <div class="w-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
           <h3 class="bn-f">প্রকাশক ছাড়া বই হয় না</h3>
           <p class="bn-f">নতুন লেখকের জন্য দরজা বন্ধ — পরিচিতি লাগে, টাকা লাগে, আর বছরের পর বছর অপেক্ষা।</p>
           <p class="w-en">For a new writer, publishing means gatekeepers, printing costs and years of waiting.</p>
         </article>
         <article class="why-card rv" style="--d:.16s">
-          <div class="w-ic">🎨</div>
+          <div class="w-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></div>
           <h3 class="bn-f">কমিক আঁকিয়েদের কোনো ঘর নেই</h3>
           <p class="bn-f">বাংলা মাঙ্গা-কমিকের কোনো প্ল্যাটফর্মই ছিল না — আঁকা হারিয়ে যায় ফেসবুক গ্রুপের ভিড়ে।</p>
           <p class="w-en">Bangla comic artists never had a platform — art gets buried in Facebook groups.</p>
         </article>
         <article class="why-card rv" style="--d:.24s">
-          <div class="w-ic">🔍</div>
+          <div class="w-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg></div>
           <h3 class="bn-f">পাঠক পাওয়া ভাগ্যের ব্যাপার</h3>
           <p class="bn-f">ভালো লিখলেও পৌঁছানোর রাস্তা নেই — না আছে ডিসকভারি, না র‍্যাংকিং, না ফ্যানডম।</p>
           <p class="w-en">Even great work can't find readers — no discovery, no rankings, no fandom tools.</p>
         </article>
         <article class="why-card rv" style="--d:.32s">
-          <div class="w-ic">🌏</div>
+          <div class="w-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
           <h3 class="bn-f">বাংলার গল্প সীমানা পেরোয় না</h3>
           <p class="bn-f">আমাদের গল্পগুলো বিশ্ব দেখার যোগ্য — কিন্তু দেশের বাইরে পৌঁছানোর কোনো পথ ছিল না।</p>
           <p class="w-en">Our stories deserve the world — but there was no road beyond the border.</p>
@@ -294,8 +299,8 @@
         <p class="section-lede rv" style="--d:.12s" data-i18n="map.lede">Everything happens inside the app. Tap the purple Write button in the bottom bar and follow the road.</p>
 
         <div class="tabs rv" style="--d:.18s" role="tablist" aria-label="Publishing tracks">
-          <button class="tab" id="tab-story" type="button" role="tab" aria-selected="true" aria-controls="track-story"><span class="t-ic">✍️</span><span data-i18n="map.tabStory">Story</span></button>
-          <button class="tab" id="tab-visual" type="button" role="tab" aria-selected="false" aria-controls="track-visual"><span class="t-ic">🎨</span><span data-i18n="map.tabVisual">Visual story</span></button>
+          <button class="tab" id="tab-story" type="button" role="tab" aria-selected="true" aria-controls="track-story"><svg class="t-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span data-i18n="map.tabStory">Story</span></button>
+          <button class="tab" id="tab-visual" type="button" role="tab" aria-selected="false" aria-controls="track-visual"><svg class="t-ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span data-i18n="map.tabVisual">Visual story</span></button>
         </div>
 
         <!-- Story track -->
@@ -303,11 +308,18 @@
           <h3 class="track-title" data-i18n="map.storyTitle">Publish a written story</h3>
           <div class="snake">
             <svg class="snake-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="flowGradS" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#7b5cf0"/>
+                  <stop offset="0.5" stop-color="#cf59c8"/>
+                  <stop offset="1" stop-color="#f0b35c"/>
+                </linearGradient>
+              </defs>
               <path class="rail" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
-              <path class="flow" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
+              <path class="flow" stroke="url(#flowGradS)" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
             </svg>
             <ol class="stops">
-              <li class="stop right" style="--y:10%; --d:.15s">
+              <li class="stop right" style="--y:10%; --d:.15s; --nc:#7b5cf0">
                 <span class="node">1</span>
                 <div class="step">
                   <strong data-i18n="s1.t">Tap Write, then Create New</strong>
@@ -315,7 +327,7 @@
                   <span class="bn-echo">লেখার শুরু এখানেই</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:30%; --d:.35s">
+              <li class="stop left" style="--y:30%; --d:.35s; --nc:#a55ce8">
                 <span class="node">2</span>
                 <div class="step">
                   <strong data-i18n="s2.t">Choose “Story” and a length</strong>
@@ -323,7 +335,7 @@
                   <span class="bn-echo">ছোটগল্প, নভেলা বা উপন্যাস</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:50%; --d:.55s">
+              <li class="stop right" style="--y:50%; --d:.55s; --nc:#cf59c8">
                 <span class="node">3</span>
                 <div class="step">
                   <strong data-i18n="s3.t">Add the details</strong>
@@ -331,7 +343,7 @@
                   <span class="bn-echo">নাম, প্রচ্ছদ, সারাংশ</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:70%; --d:.75s">
+              <li class="stop left" style="--y:70%; --d:.75s; --nc:#e86aa0">
                 <span class="node">4</span>
                 <div class="step">
                   <strong data-i18n="s4.t">Write chapters in the editor</strong>
@@ -339,7 +351,7 @@
                   <span class="bn-echo">অধ্যায় লেখো নিজের গতিতে</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:90%; --d:.95s">
+              <li class="stop right" style="--y:90%; --d:.95s; --nc:#f0b35c">
                 <span class="node">5</span>
                 <div class="step">
                   <strong data-i18n="s5.t">Publish &amp; grow</strong>
@@ -356,11 +368,18 @@
           <h3 class="track-title" data-i18n="map.visualTitle">Publish a visual story</h3>
           <div class="snake">
             <svg class="snake-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="flowGradV" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#7b5cf0"/>
+                  <stop offset="0.5" stop-color="#cf59c8"/>
+                  <stop offset="1" stop-color="#f0b35c"/>
+                </linearGradient>
+              </defs>
               <path class="rail" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
-              <path class="flow" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
+              <path class="flow" stroke="url(#flowGradV)" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
             </svg>
             <ol class="stops">
-              <li class="stop right" style="--y:10%; --d:.15s">
+              <li class="stop right" style="--y:10%; --d:.15s; --nc:#7b5cf0">
                 <span class="node">1</span>
                 <div class="step">
                   <strong data-i18n="v1.t">Tap Write, then Create New</strong>
@@ -368,7 +387,7 @@
                   <span class="bn-echo">আঁকিয়েদের জন্যও একই দরজা</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:30%; --d:.35s">
+              <li class="stop left" style="--y:30%; --d:.35s; --nc:#a55ce8">
                 <span class="node">2</span>
                 <div class="step">
                   <strong data-i18n="v2.t">Pick your format</strong>
@@ -376,7 +395,7 @@
                   <span class="bn-echo">মাঙ্গা, মানহুয়া বা কমিক</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:50%; --d:.55s">
+              <li class="stop right" style="--y:50%; --d:.55s; --nc:#cf59c8">
                 <span class="node">3</span>
                 <div class="step">
                   <strong data-i18n="v3.t">Add the details</strong>
@@ -384,7 +403,7 @@
                   <span class="bn-echo">প্রচ্ছদই তোমার পোস্টার</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:70%; --d:.75s">
+              <li class="stop left" style="--y:70%; --d:.75s; --nc:#e86aa0">
                 <span class="node">4</span>
                 <div class="step">
                   <strong data-i18n="v4.t">Upload chapter pages</strong>
@@ -392,7 +411,7 @@
                   <span class="bn-echo">পাতায় পাতায় তোমার আঁকা</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:90%; --d:.95s">
+              <li class="stop right" style="--y:90%; --d:.95s; --nc:#f0b35c">
                 <span class="node">5</span>
                 <div class="step">
                   <strong data-i18n="v5.t">Publish &amp; grow</strong>
@@ -414,19 +433,19 @@
       <h2 class="rv" style="--d:.06s" data-i18n="feat.h2">Read without limits. Create without gatekeepers.</h2>
       <div class="grid">
         <article class="panel rv" style="--d:.1s">
-          <div class="ic">📖</div>
+          <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
           <h3 data-i18n="feat.readT">Read without limits</h3>
           <p data-i18n="feat.readP">Manga, manhwa, comics and written fiction — vertical scroll or page-flip, light, dark and sepia modes, built to feel fast on any phone.</p>
           <span class="bn-echo">পড়ো মন খুলে</span>
         </article>
         <article class="panel rv" style="--d:.18s">
-          <div class="ic">✍️</div>
+          <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
           <h3 data-i18n="feat.createT">Create &amp; publish</h3>
           <p data-i18n="feat.createP">A creator studio in your pocket: write chapters, upload pages and build a series — no publisher between your story and its readers. <a class="in-link" href="#publish" data-i18n="feat.createLink">See the roadmap →</a></p>
           <span class="bn-echo">লেখো নিজের গল্প</span>
         </article>
         <article class="panel rv" style="--d:.26s">
-          <div class="ic">🌱</div>
+          <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h3 data-i18n="feat.growT">Grow a fandom</h3>
           <p data-i18n="feat.growP">Followers, reviews, comments and rankings — a community made for Bengali storytellers, where local creators come first.</p>
           <span class="bn-echo">বাড়ুক তোমার পাঠক</span>
