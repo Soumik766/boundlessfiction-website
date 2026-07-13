@@ -93,6 +93,54 @@ img { max-width: 100%; }
   pointer-events: none;
 }
 
+/* flowing petals — quiet, brand-tinted sakura drift over the whole page */
+.petals {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+.petals i {
+  position: absolute;
+  top: -6vh;
+  width: calc(15px * var(--s, 1));
+  height: calc(15px * var(--s, 1));
+}
+.petals i::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 150% 0 150% 0;
+  background: linear-gradient(135deg, rgba(186, 158, 255, 0.55), rgba(123, 92, 240, 0.22));
+}
+.petals i:nth-child(3n)::before {
+  border-radius: 0 150% 0 150%;
+  background: linear-gradient(135deg, rgba(207, 89, 200, 0.45), rgba(123, 92, 240, 0.2));
+}
+.petals i:nth-child(5n)::before {
+  background: linear-gradient(135deg, rgba(240, 179, 92, 0.38), rgba(207, 89, 200, 0.16));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .petals i { animation: petalFall var(--t, 22s) linear var(--d, 0s) infinite; }
+  .petals i::before { animation: petalFlutter 3.6s ease-in-out infinite alternate; }
+  @keyframes petalFall {
+    0%   { transform: translate3d(0, -6vh, 0); }
+    25%  { transform: translate3d(4vw, 22vh, 0); }
+    50%  { transform: translate3d(-3vw, 50vh, 0); }
+    75%  { transform: translate3d(5vw, 78vh, 0); }
+    100% { transform: translate3d(-1vw, 110vh, 0); }
+  }
+  @keyframes petalFlutter {
+    from { transform: rotateZ(-35deg) rotateY(0deg); }
+    to   { transform: rotateZ(55deg) rotateY(180deg); }
+  }
+}
+@media (max-width: 640px) {
+  .petals i:nth-child(2n) { display: none; }
+}
+
 /* trailing cursor glow — an accent ring, the native cursor stays (injected by JS) */
 #cursor-glow {
   position: fixed;
@@ -988,20 +1036,6 @@ nav.links a:hover::after, nav.links a[aria-current]::after { right: 0; }
 /* no-JS / reduced-motion: path fully drawn */
 html:not(.js) .snake-path .flow { stroke-dashoffset: 0; }
 
-/* the little mouse arrow that rides the road as you scroll */
-.road-cursor {
-  position: absolute;
-  left: 0; top: 0;
-  z-index: 3;
-  margin: -3px 0 0 -4px;
-  pointer-events: none;
-  opacity: 0;
-  transition: transform 0.25s linear, opacity 0.3s ease;
-  filter: drop-shadow(0 6px 14px rgba(25, 19, 39, 0.4));
-}
-.road-cursor svg { display: block; }
-html:not(.js) .road-cursor { display: none; }
-
 .stops { list-style: none; position: absolute; inset: 0; }
 .stop { position: absolute; top: var(--y); left: 0; right: 0; height: 0; }
 /* scroll-lit: each stop wakes up as the flow reaches it, dims when it leaves */
@@ -1314,7 +1348,7 @@ footer {
 /* Snake → simple vertical timeline on small screens */
 @media (max-width: 760px) {
   .snake { height: auto; }
-  .snake-path, .road-cursor { display: none; }
+  .snake-path { display: none; }
   .stops {
     position: static;
     padding-left: 0;
@@ -1384,5 +1418,5 @@ footer {
   }
   html { scroll-behavior: auto; }
   .snake-path .flow { stroke-dashoffset: 0 !important; }
-  .road-cursor { display: none !important; }
+  .petals { display: none !important; }
 }

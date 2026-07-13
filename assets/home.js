@@ -131,13 +131,7 @@
     snake.querySelectorAll(".stop").forEach(function (li) {
       stops.push({ el: li, y: parseFloat(li.style.getPropertyValue("--y")) || 0 });
     });
-    snakes.push({
-      el: snake,
-      flow: snake.querySelector(".flow"),
-      cursor: snake.querySelector(".road-cursor"),
-      len: 0,
-      stops: stops
-    });
+    snakes.push({ el: snake, flow: snake.querySelector(".flow"), stops: stops });
   });
   function updateSnakes() {
     var vh = window.innerHeight || 1;
@@ -147,19 +141,6 @@
       var p = (vh * 0.8 - r.top) / (r.height * 0.92 || 1);
       p = Math.max(0, Math.min(1, p));
       if (s.flow) s.flow.style.strokeDashoffset = (100 - p * 100).toFixed(2);
-      /* the mouse arrow rides the tip of the drawn road — both directions */
-      if (s.cursor && s.flow && s.flow.getPointAtLength) {
-        if (!s.len) {
-          try { s.len = s.flow.getTotalLength(); } catch (e) { /* not renderable yet */ }
-        }
-        if (s.len) {
-          var pt = s.flow.getPointAtLength(p * s.len);
-          var x = (pt.x / 100) * r.width;
-          var y = (pt.y / 100) * r.height;
-          s.cursor.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
-          s.cursor.style.opacity = p > 0.01 ? "1" : "0";
-        }
-      }
       s.stops.forEach(function (st) {
         st.el.classList.toggle("lit", p * 100 >= st.y - 2);
       });
