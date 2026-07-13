@@ -509,6 +509,32 @@ nav.links a:hover::after, nav.links a[aria-current]::after { right: 0; }
 }
 .contact-card .email:hover { color: #c4b5fd; border-color: var(--ember); }
 .contact-card .hint { font-size: 0.85rem; color: var(--text-mute); }
+.contact-socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.contact-socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 20px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  background: rgba(139, 92, 246, 0.08);
+  color: var(--text-dim);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: color 0.2s, border-color 0.2s, transform 0.18s, box-shadow 0.2s;
+}
+.contact-socials a:hover, .contact-socials a:focus-visible {
+  color: var(--text);
+  border-color: rgba(167, 139, 250, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(139, 92, 246, 0.25);
+}
 
 /* ── Legal pages — paper card ─────────────────────────────────────────── */
 .paper-wrap { padding: 70px 0 90px; }
