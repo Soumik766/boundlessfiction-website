@@ -60,8 +60,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Albert+Sans:wght@400;600;700;800&family=Noto+Serif+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/home.css?v=2">
-<script defer src="assets/home.js?v=2"></script>
+<link rel="stylesheet" href="assets/home.css?v=3">
+<script defer src="assets/home.js?v=3"></script>
 </head>
 <body>
 
@@ -86,86 +86,142 @@
 </header>
 
 <main>
-  <!-- ── Hero: the orbit ─────────────────────────────────────────────── -->
+  <!-- ── Hero: the night shelf ───────────────────────────────────────── -->
   <section class="hero">
     <!-- Ambient motion background (pure CSS). To swap in a generated video
-         loop, drop assets/hero-loop.mp4 + uncomment:
+         loop (needs Higgsfield credits), drop assets/hero-loop.mp4 + uncomment:
     <video class="hero-video" autoplay muted loop playsinline poster="assets/logo.png">
       <source src="assets/hero-loop.mp4" type="video/mp4">
     </video> -->
     <div class="sky" aria-hidden="true">
       <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
       <span class="stars s1"></span><span class="stars s2"></span>
+      <span class="shoot sh1"></span><span class="shoot sh2"></span>
     </div>
 
-    <div class="wrap hero-center">
-      <span class="live-badge rv"><span class="dot"></span><span data-i18n="hero.badge">Now live on Google Play</span></span>
-      <h1 class="rv" style="--d:.07s">
-        <span data-i18n="hero.h1a">Read it. Write it.</span><br>
-        <span class="grad" data-i18n="hero.h1b">Publish it.</span>
-      </h1>
-      <p class="bn-display rv" style="--d:.14s">বাংলার গল্প, এবার হাতের মুঠোয়।</p>
-      <p class="lede rv" style="--d:.2s" data-i18n="hero.lede">Original manga, comics and novels in Bangla and English — free on Android. Made in Bangladesh, read everywhere.</p>
-      <div class="cta-row rv" style="--d:.28s">
-        <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00F076" d="M16.9 8.4 5.8 1.8c-.9-.5-1.7-.5-2.2 0L13.7 12l3.2-3.6z"/><path fill="#00D7FE" d="M3.6 1.8 13.7 12 3.6 22.2c-.4-.4-.6-1-.6-1.7V3.5c0-.7.2-1.3.6-1.7z"/><path fill="#FFCE00" d="M17.1 8.6 13.7 12l3.4 3.4 4-2.3c1.2-.7 1.2-1.5 0-2.2l-4-2.3z"/><path fill="#FF3A44" d="M16.9 15.6 13.7 12 3.6 22.2c.5.5 1.3.5 2.2 0l11.1-6.6z"/></svg>
-          <span class="lines"><span class="small" data-i18n="hero.geton">GET IT ON</span><span class="big">Google Play</span></span>
-        </a>
-        <a class="btn-ghost" href="#publish" data-i18n="hero.how">How publishing works</a>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="live-badge rv"><span class="dot"></span><span data-i18n="hero.badge">Now live on Google Play</span></span>
+        <h1 class="rv" style="--d:.07s">
+          <span data-i18n="hero.h1a">Read it. Write it.</span><br>
+          <span class="grad" data-i18n="hero.h1b">Publish it.</span>
+        </h1>
+        <p class="bn-display rv" style="--d:.14s">বাংলার গল্প, এবার হাতের মুঠোয়।</p>
+        <p class="lede rv" style="--d:.2s" data-i18n="hero.lede">Original manga, comics and novels in Bangla and English — free on Android. Made in Bangladesh, read everywhere.</p>
+        <div class="cta-row rv" style="--d:.28s">
+          <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00F076" d="M16.9 8.4 5.8 1.8c-.9-.5-1.7-.5-2.2 0L13.7 12l3.2-3.6z"/><path fill="#00D7FE" d="M3.6 1.8 13.7 12 3.6 22.2c-.4-.4-.6-1-.6-1.7V3.5c0-.7.2-1.3.6-1.7z"/><path fill="#FFCE00" d="M17.1 8.6 13.7 12l3.4 3.4 4-2.3c1.2-.7 1.2-1.5 0-2.2l-4-2.3z"/><path fill="#FF3A44" d="M16.9 15.6 13.7 12 3.6 22.2c.5.5 1.3.5 2.2 0l11.1-6.6z"/></svg>
+            <span class="lines"><span class="small" data-i18n="hero.geton">GET IT ON</span><span class="big">Google Play</span></span>
+          </a>
+          <a class="btn-ghost" href="#publish" data-i18n="hero.how">How publishing works</a>
+        </div>
+        <p class="hero-note rv" style="--d:.36s"><span class="dot" aria-hidden="true"></span><span data-i18n="hero.note">Real series by real creators — live in the app right now.</span></p>
       </div>
 
-      <!-- The planet system: real covers from the app orbiting the logo -->
-      <div class="orbit-stage rv" style="--d:.36s" role="img" aria-label="Real covers from Boundless Fiction creators orbiting the app logo">
-        <div class="sun">
-          <span class="sun-glow" aria-hidden="true"></span>
-          <img src="assets/logo.png" alt="" width="120" height="120">
-        </div>
+      <!-- The night shelf: real covers from the app drifting past in 3D -->
+      <div class="shelf rv" style="--d:.24s" role="img" aria-label="Covers of real series published on Boundless Fiction, drifting across a tilted shelf">
+        <div class="shelf-tilt">
+          <div class="lane" style="--t:46s">
+            <div class="lane-track">
+              <div class="set">
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/athena-buddhimotir.webp" alt="" width="360" height="480" decoding="async">
+                  <span class="plate"><strong class="bn-f">বুদ্ধিমতীর প্রতিস্পর্ধা</strong><em>AthenaAyame</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/bossb-fifth-seal.webp" alt="" width="360" height="540" decoding="async">
+                  <span class="plate"><strong>The Fifth Seal</strong><em>Boss_B</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-chhaya.webp" alt="" width="360" height="480" decoding="async">
+                  <span class="plate"><strong class="bn-f">ছায়া</strong><em>Ovi_Roy</em></span>
+                </a>
+              </div>
+              <div class="set" aria-hidden="true">
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/athena-buddhimotir.webp" alt="" width="360" height="480" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">বুদ্ধিমতীর প্রতিস্পর্ধা</strong><em>AthenaAyame</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/bossb-fifth-seal.webp" alt="" width="360" height="540" loading="lazy" decoding="async">
+                  <span class="plate"><strong>The Fifth Seal</strong><em>Boss_B</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-chhaya.webp" alt="" width="360" height="480" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">ছায়া</strong><em>Ovi_Roy</em></span>
+                </a>
+              </div>
+            </div>
+          </div>
 
-        <!-- inner ring: written stories -->
-        <div class="orbit o1" aria-hidden="false">
-          <div class="orbit-spin">
-            <div class="sat" style="--a:0deg"><div class="unrot"><div class="counter"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/athena-buddhimotir.webp" alt="বুদ্ধিমতীর প্রতিস্পর্ধা — story by AthenaAyame" width="360" height="480" decoding="async">
-              <span class="lbl"><strong class="bn-f">বুদ্ধিমতীর প্রতিস্পর্ধা</strong><em>AthenaAyame</em></span>
-            </a></div></div></div>
-            <div class="sat" style="--a:90deg"><div class="unrot"><div class="counter"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/ovi-mritoder-ayna.webp" alt="মৃতদের আয়না — story by Ovi_Roy" width="360" height="480" decoding="async">
-              <span class="lbl"><strong class="bn-f">মৃতদের আয়না</strong><em>Ovi_Roy</em></span>
-            </a></div></div></div>
-            <div class="sat" style="--a:180deg"><div class="unrot"><div class="counter"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/ovi-tumi.webp" alt="তুমি — story by Ovi_Roy" width="360" height="480" decoding="async">
-              <span class="lbl"><strong class="bn-f">তুমি</strong><em>Ovi_Roy</em></span>
-            </a></div></div></div>
-            <div class="sat" style="--a:270deg"><div class="unrot"><div class="counter"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/ovi-chhaya.webp" alt="ছায়া — story by Ovi_Roy" width="360" height="480" decoding="async">
-              <span class="lbl"><strong class="bn-f">ছায়া</strong><em>Ovi_Roy</em></span>
-            </a></div></div></div>
+          <div class="lane rev" style="--t:58s">
+            <div class="lane-track">
+              <div class="set">
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/nill-ogrebane.webp" alt="" width="360" height="540" decoding="async">
+                  <span class="plate"><strong>OGREBANE</strong><em>Nill</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-mritoder-ayna.webp" alt="" width="360" height="480" decoding="async">
+                  <span class="plate"><strong class="bn-f">মৃতদের আয়না</strong><em>Ovi_Roy</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/bossb-shundorfol.webp" alt="" width="360" height="540" decoding="async">
+                  <span class="plate"><strong class="bn-f">সুন্দরফলের সন্ধানে শান</strong><em>Boss_B</em></span>
+                </a>
+              </div>
+              <div class="set" aria-hidden="true">
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/nill-ogrebane.webp" alt="" width="360" height="540" loading="lazy" decoding="async">
+                  <span class="plate"><strong>OGREBANE</strong><em>Nill</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-mritoder-ayna.webp" alt="" width="360" height="480" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">মৃতদের আয়না</strong><em>Ovi_Roy</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/bossb-shundorfol.webp" alt="" width="360" height="540" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">সুন্দরফলের সন্ধানে শান</strong><em>Boss_B</em></span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="lane" style="--t:52s">
+            <div class="lane-track">
+              <div class="set">
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-tumi.webp" alt="" width="360" height="480" decoding="async">
+                  <span class="plate"><strong class="bn-f">তুমি</strong><em>Ovi_Roy</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/bossb-adhamanob.webp" alt="" width="360" height="540" decoding="async">
+                  <span class="plate"><strong class="bn-f">আধামানব</strong><em>Boss_B</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/athena-buddhimotir.webp" alt="" width="360" height="480" decoding="async">
+                  <span class="plate"><strong class="bn-f">বুদ্ধিমতীর প্রতিস্পর্ধা</strong><em>AthenaAyame</em></span>
+                </a>
+              </div>
+              <div class="set" aria-hidden="true">
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-tumi.webp" alt="" width="360" height="480" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">তুমি</strong><em>Ovi_Roy</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/bossb-adhamanob.webp" alt="" width="360" height="540" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">আধামানব</strong><em>Boss_B</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/athena-buddhimotir.webp" alt="" width="360" height="480" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">বুদ্ধিমতীর প্রতিস্পর্ধা</strong><em>AthenaAyame</em></span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-
-        <!-- outer ring: visual stories -->
-        <div class="orbit o2" aria-hidden="false">
-          <div class="orbit-spin rev">
-            <div class="sat" style="--a:45deg"><div class="unrot"><div class="counter rev"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/bossb-fifth-seal.webp" alt="The Fifth Seal — manhwa by Boss_B" width="360" height="540" decoding="async">
-              <span class="lbl"><strong>The Fifth Seal</strong><em>Boss_B</em></span>
-            </a></div></div></div>
-            <div class="sat" style="--a:135deg"><div class="unrot"><div class="counter rev"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/bossb-shundorfol.webp" alt="সুন্দরফলের সন্ধানে শান — comic by Boss_B" width="360" height="540" decoding="async">
-              <span class="lbl"><strong class="bn-f">সুন্দরফলের সন্ধানে শান</strong><em>Boss_B</em></span>
-            </a></div></div></div>
-            <div class="sat" style="--a:225deg"><div class="unrot"><div class="counter rev"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/bossb-adhamanob.webp" alt="আধামানব — comic by Boss_B" width="360" height="540" decoding="async">
-              <span class="lbl"><strong class="bn-f">আধামানব</strong><em>Boss_B</em></span>
-            </a></div></div></div>
-            <div class="sat" style="--a:315deg"><div class="unrot"><div class="counter rev"><a class="sat-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
-              <img src="assets/covers/nill-ogrebane.webp" alt="OGREBANE — manga by Nill" width="360" height="540" decoding="async">
-              <span class="lbl"><strong>OGREBANE</strong><em>Nill</em></span>
-            </a></div></div></div>
-          </div>
-        </div>
+        <span class="shelf-fog" aria-hidden="true"></span>
       </div>
-      <p class="orbit-note rv" style="--d:.42s" data-i18n="hero.orbitNote">Real series by real creators — live in the app right now.</p>
     </div>
   </section>
 

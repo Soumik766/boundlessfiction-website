@@ -1,11 +1,14 @@
-/* Boundless Fiction — homepage interactions (v2)
+/* Boundless Fiction — homepage interactions (v3)
    Vanilla, dependency-free. English lives in the HTML; this file holds ONLY
-   the Bangla dictionary. With JS off the page is fully readable. */
+   the Bangla dictionary plus the interaction layer (progress bar, magnetic
+   CTAs, cursor spotlight/tilt, shelf parallax). With JS off the page is
+   fully readable and the shelf still drifts (pure CSS). */
 (function () {
   "use strict";
   document.documentElement.classList.add("js");
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia("(pointer: fine)").matches;
 
   /* ── Bangla dictionary ─────────────────────────────────────────────── */
   var BN = {
@@ -26,7 +29,7 @@
     "hero.geton": "ডাউনলোড করো",
     "hero.geton2": "ডাউনলোড করো",
     "hero.how": "প্রকাশ করা শেখো",
-    "hero.orbitNote": "সত্যিকারের ক্রিয়েটরদের সত্যিকারের সিরিজ — এই মুহূর্তে অ্যাপে লাইভ।",
+    "hero.note": "সত্যিকারের ক্রিয়েটরদের সত্যিকারের সিরিজ — এই মুহূর্তে অ্যাপে লাইভ।",
 
     "why.kicker": "কেন Boundless Fiction",
     "why.sub": "গল্পগুলো সবসময়ই ছিল। ছিল না শুধু ওদের একটা ঘর।",
@@ -129,11 +132,14 @@
         if (panel) {
           panel.hidden = !selected;
           if (selected) {
-            // Replay the snake draw + stop reveals for the shown track.
+            // Replay the entrance + snake draw for the shown track.
+            panel.classList.remove("tab-in");
+            void panel.offsetWidth; /* restart animations */
+            panel.classList.add("tab-in");
             var snake = panel.querySelector(".snake");
             if (snake) {
               snake.classList.remove("in");
-              void snake.offsetWidth; /* restart transitions */
+              void snake.offsetWidth;
               snake.classList.add("in");
             }
           }
@@ -163,5 +169,85 @@
     document.querySelectorAll(".rv, .snake").forEach(function (el) {
       el.classList.add("in");
     });
+  }
+
+  /* ── Reading progress + header state ───────────────────────────────── */
+  var bar = document.createElement("div");
+  bar.id = "progress";
+  document.body.appendChild(bar);
+  var header = document.querySelector("header");
+  var scrollTick = false;
+  function onScroll() {
+    if (scrollTick) return;
+    scrollTick = true;
+    requestAnimationFrame(function () {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? doc.scrollTop / max : 0) + ")";
+      if (header) header.classList.toggle("scrolled", doc.scrollTop > 10);
+      scrollTick = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ── Pointer-driven flourishes (desktop, motion-ok only) ───────────── */
+  if (finePointer && !reduceMotion) {
+    /* magnetic CTAs — the button leans toward the cursor */
+    document.querySelectorAll(".btn-play, .btn-ghost").forEach(function (btn) {
+      btn.addEventListener("pointermove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        btn.style.setProperty("--tx", (x * 10).toFixed(1) + "px");
+        btn.style.setProperty("--ty", (y * 8 - 2).toFixed(1) + "px");
+      });
+      btn.addEventListener("pointerleave", function () {
+        btn.style.setProperty("--tx", "0px");
+        btn.style.setProperty("--ty", "0px");
+      });
+    });
+
+    /* cursor spotlight + gentle 3D tilt on cards */
+    document.querySelectorAll(".why-card, .panel, .step").forEach(function (card) {
+      var tilts = !card.classList.contains("step");
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        var mx = e.clientX - r.left;
+        var my = e.clientY - r.top;
+        card.style.setProperty("--mx", mx.toFixed(0) + "px");
+        card.style.setProperty("--my", my.toFixed(0) + "px");
+        if (tilts) {
+          card.style.setProperty("--ry", ((mx / r.width - 0.5) * 5).toFixed(2) + "deg");
+          card.style.setProperty("--rx", ((0.5 - my / r.height) * 5).toFixed(2) + "deg");
+        }
+      });
+      card.addEventListener("pointerleave", function () {
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+    });
+
+    /* shelf parallax — the cover wall answers the cursor */
+    var hero = document.querySelector(".hero");
+    var tilt = document.querySelector(".shelf-tilt");
+    if (hero && tilt) {
+      var px = 0, py = 0, parallaxTick = false;
+      hero.addEventListener("pointermove", function (e) {
+        px = (e.clientX / window.innerWidth - 0.5) * 2;
+        py = (e.clientY / window.innerHeight - 0.5) * 2;
+        if (parallaxTick) return;
+        parallaxTick = true;
+        requestAnimationFrame(function () {
+          tilt.style.setProperty("--px", px.toFixed(3));
+          tilt.style.setProperty("--py", py.toFixed(3));
+          parallaxTick = false;
+        });
+      });
+      hero.addEventListener("pointerleave", function () {
+        tilt.style.setProperty("--px", "0");
+        tilt.style.setProperty("--py", "0");
+      });
+    }
   }
 })();
