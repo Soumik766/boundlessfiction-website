@@ -1077,9 +1077,18 @@ html:not(.js) .snake-path .flow { stroke-dashoffset: 0; }
 
 .stops { list-style: none; position: absolute; inset: 0; }
 .stop { position: absolute; top: var(--y); left: 0; right: 0; height: 0; }
-/* scroll-lit: each stop wakes up as the flow reaches it, dims when it leaves */
-.js .roadmap .stop { opacity: 0.3; --ns: 0.8; transition: opacity 0.5s ease; }
-.js .roadmap .stop.lit { opacity: 1; --ns: 1; }
+/* scroll-lit: each stop wakes up as the flow reaches it, dims when it
+   leaves. Only the CARD fades — the node stays fully opaque so the
+   road (and the phone fill line) always passes under it, never through. */
+.js .roadmap .stop { --ns: 0.85; }
+.js .roadmap .stop .step { opacity: 0.35; transition: opacity 0.5s ease, box-shadow 0.35s ease, border-color 0.45s ease; }
+.js .roadmap .stop.lit { --ns: 1; }
+.js .roadmap .stop.lit .step { opacity: 1; }
+.js .roadmap .node { border-color: #ded8f0; color: #b3abcc; }
+.js .roadmap .stop.lit .node {
+  border-color: var(--nc, var(--violet));
+  color: var(--nc, var(--violet-deep));
+}
 .node {
   position: absolute;
   top: 0;
