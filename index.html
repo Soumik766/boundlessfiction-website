@@ -60,8 +60,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Albert+Sans:wght@400;600;700;800&family=Noto+Serif+Bengali:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/home.css?v=4">
-<script defer src="assets/home.js?v=4"></script>
+<link rel="stylesheet" href="assets/home.css?v=5">
+<script defer src="assets/home.js?v=5"></script>
 </head>
 <body>
 
@@ -88,9 +88,17 @@
   </div>
 </header>
 
+<nav class="dot-nav" aria-label="Page sections">
+  <a href="#top" class="act"><span class="dn-label" data-i18n="nav.home">Home</span><span class="dn-dot"></span></a>
+  <a href="#why"><span class="dn-label" data-i18n="nav.why">Why us</span><span class="dn-dot"></span></a>
+  <a href="#publish"><span class="dn-label" data-i18n="nav.guide">Publishing guide</span><span class="dn-dot"></span></a>
+  <a href="#features"><span class="dn-label" data-i18n="dn.features">Features</span><span class="dn-dot"></span></a>
+  <a href="#get-app"><span class="dn-label" data-i18n="dn.app">Get the app</span><span class="dn-dot"></span></a>
+</nav>
+
 <main>
   <!-- ── Hero: the night shelf ───────────────────────────────────────── -->
-  <section class="hero">
+  <section class="hero" id="top">
     <!-- Ambient motion background (pure CSS). To swap in a generated video
          loop (needs Higgsfield credits), drop assets/hero-loop.mp4 + uncomment:
     <video class="hero-video" autoplay muted loop playsinline poster="assets/logo.png">
@@ -111,7 +119,7 @@
           <span class="grad" data-i18n="hero.h1b">Publish it.</span>
         </h1>
         <p class="bn-display rv" style="--d:.14s">বাংলার গল্প, এবার হাতের মুঠোয়।</p>
-        <p class="lede rv" style="--d:.2s" data-i18n="hero.lede">Original manga, comics and novels in Bangla and English — free on Android. Made in Bangladesh, read everywhere.</p>
+        <p class="lede rv" style="--d:.2s" data-i18n="hero.lede">Bangladesh's first visual-stories app — manga, comics, manhua and manhwa — plus novels built to a global standard. Free on Android, in Bangla and English.</p>
         <div class="cta-row rv" style="--d:.28s">
           <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#00F076" d="M16.9 8.4 5.8 1.8c-.9-.5-1.7-.5-2.2 0L13.7 12l3.2-3.6z"/><path fill="#00D7FE" d="M3.6 1.8 13.7 12 3.6 22.2c-.4-.4-.6-1-.6-1.7V3.5c0-.7.2-1.3.6-1.7z"/><path fill="#FFCE00" d="M17.1 8.6 13.7 12l3.4 3.4 4-2.3c1.2-.7 1.2-1.5 0-2.2l-4-2.3z"/><path fill="#FF3A44" d="M16.9 15.6 13.7 12 3.6 22.2c.5.5 1.3.5 2.2 0l11.1-6.6z"/></svg>
@@ -175,6 +183,10 @@
                   <img src="assets/covers/bossb-shundorfol.webp" alt="" width="360" height="540" decoding="async">
                   <span class="plate"><strong class="bn-f">সুন্দরফলের সন্ধানে শান</strong><em>Boss_B</em></span>
                 </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-tumi.webp" alt="" width="360" height="480" decoding="async">
+                  <span class="plate"><strong class="bn-f">তুমি</strong><em>Ovi_Roy</em></span>
+                </a>
               </div>
               <div class="set" aria-hidden="true">
                 <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
@@ -188,6 +200,10 @@
                 <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
                   <img src="assets/covers/bossb-shundorfol.webp" alt="" width="360" height="540" loading="lazy" decoding="async">
                   <span class="plate"><strong class="bn-f">সুন্দরফলের সন্ধানে শান</strong><em>Boss_B</em></span>
+                </a>
+                <a class="shelf-card" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app" target="_blank" rel="noopener" tabindex="-1">
+                  <img src="assets/covers/ovi-tumi.webp" alt="" width="360" height="480" loading="lazy" decoding="async">
+                  <span class="plate"><strong class="bn-f">তুমি</strong><em>Ovi_Roy</em></span>
                 </a>
               </div>
             </div>
@@ -228,6 +244,8 @@
         </div>
       <span class="shelf-fog" aria-hidden="true"></span>
     </div>
+
+    <div class="scroll-cue" aria-hidden="true"><span class="sc-track"><span class="sc-dot"></span></span><span class="sc-label">Scroll</span></div>
   </section>
 
   <!-- ── Marquee strip ────────────────────────────────────────────────── -->
@@ -252,7 +270,7 @@
   <section class="why section" id="why">
     <div class="wrap">
       <div class="kicker rv" data-i18n="why.kicker">Why Boundless Fiction</div>
-      <h2 class="rv bn-lead" style="--d:.06s">গল্পের অভাব ছিল না।<br>অভাব ছিল একটা ঘরের।</h2>
+      <h2 class="rv bn-lead" style="--d:.06s">গল্পের অভাব ছিল না।<br>অভাব ছিল শুধু একটি ঠিকানার।</h2>
       <p class="why-sub rv" style="--d:.12s" data-i18n="why.sub">The stories were always here. A home for them wasn't.</p>
 
       <div class="why-grid">
@@ -264,7 +282,7 @@
         </article>
         <article class="why-card rv" style="--d:.16s">
           <div class="w-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg></div>
-          <h3 class="bn-f">কমিক আঁকিয়েদের কোনো ঘর নেই</h3>
+          <h3 class="bn-f">কমিক artists-দের কোনো ঘর নেই</h3>
           <p class="bn-f">বাংলা মাঙ্গা-কমিকের কোনো প্ল্যাটফর্মই ছিল না — আঁকা হারিয়ে যায় ফেসবুক গ্রুপের ভিড়ে।</p>
           <p class="w-en">Bangla comic artists never had a platform — art gets buried in Facebook groups.</p>
         </article>
@@ -318,8 +336,9 @@
               <path class="rail" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
               <path class="flow" stroke="url(#flowGradS)" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
             </svg>
+            <span class="road-cursor" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4.5 1.8 19 11.5l-6.3 1.3 3.5 6.9-2.8 1.4-3.4-6.9-4.6 4z" fill="#ffffff" stroke="#191327" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
             <ol class="stops">
-              <li class="stop right" style="--y:10%; --d:.15s; --nc:#7b5cf0">
+              <li class="stop right" style="--y:10%; --d:.15s; --nc:#7b5cf0; --ncs:rgba(123,92,240,.16)">
                 <span class="node">1</span>
                 <div class="step">
                   <strong data-i18n="s1.t">Tap Write, then Create New</strong>
@@ -327,7 +346,7 @@
                   <span class="bn-echo">লেখার শুরু এখানেই</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:30%; --d:.35s; --nc:#a55ce8">
+              <li class="stop left" style="--y:30%; --d:.35s; --nc:#a55ce8; --ncs:rgba(165,92,232,.16)">
                 <span class="node">2</span>
                 <div class="step">
                   <strong data-i18n="s2.t">Choose “Story” and a length</strong>
@@ -335,7 +354,7 @@
                   <span class="bn-echo">ছোটগল্প, নভেলা বা উপন্যাস</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:50%; --d:.55s; --nc:#cf59c8">
+              <li class="stop right" style="--y:50%; --d:.55s; --nc:#cf59c8; --ncs:rgba(207,89,200,.16)">
                 <span class="node">3</span>
                 <div class="step">
                   <strong data-i18n="s3.t">Add the details</strong>
@@ -343,7 +362,7 @@
                   <span class="bn-echo">নাম, প্রচ্ছদ, সারাংশ</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:70%; --d:.75s; --nc:#e86aa0">
+              <li class="stop left" style="--y:70%; --d:.75s; --nc:#e86aa0; --ncs:rgba(232,106,160,.16)">
                 <span class="node">4</span>
                 <div class="step">
                   <strong data-i18n="s4.t">Write chapters in the editor</strong>
@@ -351,7 +370,7 @@
                   <span class="bn-echo">অধ্যায় লেখো নিজের গতিতে</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:90%; --d:.95s; --nc:#f0b35c">
+              <li class="stop right" style="--y:90%; --d:.95s; --nc:#f0b35c; --ncs:rgba(240,179,92,.2)">
                 <span class="node">5</span>
                 <div class="step">
                   <strong data-i18n="s5.t">Publish &amp; grow</strong>
@@ -378,16 +397,17 @@
               <path class="rail" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
               <path class="flow" stroke="url(#flowGradV)" d="M 50 0 C 50 6 78 4 78 10 C 78 20 22 20 22 30 C 22 40 78 40 78 50 C 78 60 22 60 22 70 C 22 80 78 80 78 90" pathLength="100"/>
             </svg>
+            <span class="road-cursor" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4.5 1.8 19 11.5l-6.3 1.3 3.5 6.9-2.8 1.4-3.4-6.9-4.6 4z" fill="#ffffff" stroke="#191327" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
             <ol class="stops">
-              <li class="stop right" style="--y:10%; --d:.15s; --nc:#7b5cf0">
+              <li class="stop right" style="--y:10%; --d:.15s; --nc:#7b5cf0; --ncs:rgba(123,92,240,.16)">
                 <span class="node">1</span>
                 <div class="step">
                   <strong data-i18n="v1.t">Tap Write, then Create New</strong>
                   <p data-i18n="v1.p">Same purple pencil button — manga, manhwa and comics start from the exact same door.</p>
-                  <span class="bn-echo">আঁকিয়েদের জন্যও একই দরজা</span>
+                  <span class="bn-echo">artists-দের জন্যও একই দরজা</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:30%; --d:.35s; --nc:#a55ce8">
+              <li class="stop left" style="--y:30%; --d:.35s; --nc:#a55ce8; --ncs:rgba(165,92,232,.16)">
                 <span class="node">2</span>
                 <div class="step">
                   <strong data-i18n="v2.t">Pick your format</strong>
@@ -395,7 +415,7 @@
                   <span class="bn-echo">মাঙ্গা, মানহুয়া বা কমিক</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:50%; --d:.55s; --nc:#cf59c8">
+              <li class="stop right" style="--y:50%; --d:.55s; --nc:#cf59c8; --ncs:rgba(207,89,200,.16)">
                 <span class="node">3</span>
                 <div class="step">
                   <strong data-i18n="v3.t">Add the details</strong>
@@ -403,7 +423,7 @@
                   <span class="bn-echo">প্রচ্ছদই তোমার পোস্টার</span>
                 </div>
               </li>
-              <li class="stop left" style="--y:70%; --d:.75s; --nc:#e86aa0">
+              <li class="stop left" style="--y:70%; --d:.75s; --nc:#e86aa0; --ncs:rgba(232,106,160,.16)">
                 <span class="node">4</span>
                 <div class="step">
                   <strong data-i18n="v4.t">Upload chapter pages</strong>
@@ -411,7 +431,7 @@
                   <span class="bn-echo">পাতায় পাতায় তোমার আঁকা</span>
                 </div>
               </li>
-              <li class="stop right" style="--y:90%; --d:.95s; --nc:#f0b35c">
+              <li class="stop right" style="--y:90%; --d:.95s; --nc:#f0b35c; --ncs:rgba(240,179,92,.2)">
                 <span class="node">5</span>
                 <div class="step">
                   <strong data-i18n="v5.t">Publish &amp; grow</strong>
@@ -427,7 +447,7 @@
   </section>
 
   <!-- ── Feature trio ─────────────────────────────────────────────────── -->
-  <section class="panels section">
+  <section class="panels section" id="features">
     <div class="wrap">
       <div class="kicker rv" data-i18n="feat.kicker">One app, three doors</div>
       <h2 class="rv" style="--d:.06s" data-i18n="feat.h2">Read without limits. Create without gatekeepers.</h2>
@@ -473,7 +493,7 @@
   </section>
 
   <!-- ── Final CTA ────────────────────────────────────────────────────── -->
-  <section class="cta-band section">
+  <section class="cta-band section" id="get-app">
     <div class="wrap">
       <div class="band rv">
         <p class="bn-display big">তোমার গল্প অপেক্ষায়।</p>

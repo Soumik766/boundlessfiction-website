@@ -93,6 +93,77 @@ img { max-width: 100%; }
   pointer-events: none;
 }
 
+/* trailing cursor glow — an accent ring, the native cursor stays (injected by JS) */
+#cursor-glow {
+  position: fixed;
+  left: -18px; top: -18px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(186, 158, 255, 0.45);
+  background: radial-gradient(circle, rgba(123, 92, 240, 0.16), transparent 70%);
+  pointer-events: none;
+  z-index: 95;
+  opacity: 0;
+  will-change: transform;
+  transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease, border-color 0.25s ease, opacity 0.35s ease;
+}
+#cursor-glow.live { opacity: 1; }
+#cursor-glow.on {
+  width: 54px; height: 54px;
+  margin: -9px 0 0 -9px;
+  border-color: rgba(186, 158, 255, 0.85);
+}
+
+/* section dot navigation — right edge, labels appear on hover */
+.dot-nav {
+  position: fixed;
+  right: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 55;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.dot-nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 6px 0;
+}
+.dot-nav .dn-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.dot-nav a:hover .dn-dot { background: rgba(186, 158, 255, 0.6); transform: scale(1.25); }
+.dot-nav a.act .dn-dot {
+  background: var(--violet);
+  border-color: var(--glow);
+  transform: scale(1.35);
+  box-shadow: 0 0 12px rgba(123, 92, 240, 0.9);
+}
+.dot-nav .dn-label {
+  position: absolute;
+  right: 22px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+}
+.dot-nav a:hover .dn-label, .dot-nav a.act .dn-label { opacity: 1; transform: none; }
+.dot-nav a.act .dn-label { color: var(--glow); }
+@media (max-width: 1180px) { .dot-nav { display: none; } }
+
 /* ── Header ────────────────────────────────────────────────────────────── */
 header {
   position: sticky;
@@ -477,6 +548,53 @@ nav.links a:hover::after, nav.links a[aria-current]::after { right: 0; }
   color: var(--mute);
   font-weight: 600;
 }
+
+/* scroll cue — a quiet "there's more" at the hero's feet */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+.scroll-cue.off { opacity: 0; }
+.scroll-cue .sc-track {
+  position: relative;
+  width: 20px; height: 32px;
+  border: 1.5px solid rgba(186, 158, 255, 0.45);
+  border-radius: 12px;
+}
+.scroll-cue .sc-dot {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 4px; height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--glow);
+}
+.scroll-cue .sc-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue .sc-dot { animation: cueDrop 1.8s ease-in-out infinite; }
+  @keyframes cueDrop {
+    0%   { transform: translateY(0); opacity: 1; }
+    70%  { transform: translateY(14px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+  }
+}
+@media (max-width: 880px) { .scroll-cue { display: none; } }
 .hero-note .dot {
   width: 7px; height: 7px;
   flex: none;
@@ -870,6 +988,20 @@ nav.links a:hover::after, nav.links a[aria-current]::after { right: 0; }
 /* no-JS / reduced-motion: path fully drawn */
 html:not(.js) .snake-path .flow { stroke-dashoffset: 0; }
 
+/* the little mouse arrow that rides the road as you scroll */
+.road-cursor {
+  position: absolute;
+  left: 0; top: 0;
+  z-index: 3;
+  margin: -3px 0 0 -4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.25s linear, opacity 0.3s ease;
+  filter: drop-shadow(0 6px 14px rgba(25, 19, 39, 0.4));
+}
+.road-cursor svg { display: block; }
+html:not(.js) .road-cursor { display: none; }
+
 .stops { list-style: none; position: absolute; inset: 0; }
 .stop { position: absolute; top: var(--y); left: 0; right: 0; height: 0; }
 /* scroll-lit: each stop wakes up as the flow reaches it, dims when it leaves */
@@ -906,17 +1038,34 @@ html:not(.js) .snake-path .flow { stroke-dashoffset: 0; }
   transform: translateY(-50%);
   width: 52%;
   background: #ffffff;
-  border: 1px solid rgba(123, 92, 240, 0.18);
-  border-left: 3px solid rgba(123, 92, 240, 0.18);
+  border: 1px solid rgba(25, 19, 39, 0.08);
   border-radius: var(--radius);
   padding: 20px 22px;
   box-shadow: 0 14px 40px rgba(25, 19, 39, 0.1);
-  transition: box-shadow 0.25s, border-color 0.4s;
+  transition: box-shadow 0.35s ease, border-color 0.45s ease;
 }
-.stop.lit .step { border-left-color: var(--nc, var(--violet)); }
+/* the step's accent arrives as a soft color wash, not a hard line */
+.step::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(150deg, var(--ncs, rgba(123, 92, 240, 0.14)), rgba(255, 255, 255, 0) 55%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.stop.lit .step::after { opacity: 1; }
+.stop.lit .step {
+  border-color: var(--ncs, rgba(123, 92, 240, 0.25));
+  box-shadow: 0 18px 46px rgba(25, 19, 39, 0.09), 0 14px 36px -10px var(--ncs, rgba(123, 92, 240, 0.3));
+}
 .stop.right .step { left: 4%; }
 .stop.left  .step { left: 44%; }
-.step:hover { border-color: rgba(123, 92, 240, 0.45); border-left-color: var(--nc, var(--violet)); box-shadow: 0 20px 52px rgba(123, 92, 240, 0.22); }
+.step:hover {
+  border-color: var(--ncs, rgba(123, 92, 240, 0.35));
+  box-shadow: 0 22px 56px rgba(123, 92, 240, 0.2);
+}
 .step strong { display: block; font-size: 1.04rem; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
 .step p { color: var(--ink-dim); font-size: 0.94rem; }
 
@@ -1165,7 +1314,7 @@ footer {
 /* Snake → simple vertical timeline on small screens */
 @media (max-width: 760px) {
   .snake { height: auto; }
-  .snake-path { display: none; }
+  .snake-path, .road-cursor { display: none; }
   .stops {
     position: static;
     padding-left: 0;
@@ -1235,4 +1384,5 @@ footer {
   }
   html { scroll-behavior: auto; }
   .snake-path .flow { stroke-dashoffset: 0 !important; }
+  .road-cursor { display: none !important; }
 }
