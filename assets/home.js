@@ -10,36 +10,43 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(pointer: fine)").matches;
 
-  /* ── Shuffle the shelf — every visit hangs the covers differently ──── */
+  /* ── Shuffle the shelf — every visit hangs the covers differently ────
+     All covers are unique across the wall (no repeats on screen). Each
+     lane's shuffled set is cloned twice; the CSS loop steps -1/3 (one
+     set), so the wrap is seamless and the window is always painted. */
   (function shuffleShelf() {
     var lanes = document.querySelectorAll(".shelf .lane");
     if (!lanes.length) return;
     var pool = [];
     lanes.forEach(function (lane) {
-      var firstSet = lane.querySelector(".set");
-      if (firstSet) {
-        firstSet.querySelectorAll(".shelf-card").forEach(function (card) {
-          pool.push(card);
-        });
-      }
+      lane.querySelectorAll(".set .shelf-card").forEach(function (card) {
+        pool.push(card);
+      });
     });
-    if (pool.length < 4) return;
+    if (pool.length < 6) return;
     for (var i = pool.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
     }
+    var per = Math.floor(pool.length / lanes.length);
     var idx = 0;
     lanes.forEach(function (lane) {
-      var sets = lane.querySelectorAll(".set");
-      if (sets.length < 2) return;
-      var count = sets[0].querySelectorAll(".shelf-card").length;
-      while (sets[0].firstChild) sets[0].removeChild(sets[0].firstChild);
-      while (sets[1].firstChild) sets[1].removeChild(sets[1].firstChild);
-      for (var k = 0; k < count && idx < pool.length; k++, idx++) {
-        sets[0].appendChild(pool[idx]);
-        /* the second set must mirror the first exactly — that's what makes
-           the -50% translate loop seamless */
-        sets[1].appendChild(pool[idx].cloneNode(true));
+      var track = lane.querySelector(".lane-track");
+      if (!track) return;
+      var firstSet = track.querySelector(".set");
+      if (!firstSet) return;
+      /* drop every set, rebuild the first from the shuffled pool */
+      track.querySelectorAll(".set").forEach(function (s) {
+        while (s.firstChild) s.removeChild(s.firstChild);
+        if (s !== firstSet) track.removeChild(s);
+      });
+      for (var k = 0; k < per && idx < pool.length; k++, idx++) {
+        firstSet.appendChild(pool[idx]);
+      }
+      for (var c = 0; c < 2; c++) {
+        var dup = firstSet.cloneNode(true);
+        dup.setAttribute("aria-hidden", "true");
+        track.appendChild(dup);
       }
     });
   })();
