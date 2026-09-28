@@ -8,6 +8,17 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.boundlessfiction\.com$ [NC]
 RewriteRule ^(.*)$ https://boundlessfiction.com/$1 [R=301,L]
 
+# Shared-novel links from the app. Installed app intercepts these via Android
+# App Links; everyone else gets read.html (open-in-app / Google Play).
+RewriteRule ^read/[A-Za-z0-9_-]+/?$ read.html [L]
+
+# Extensionless URLs: /contact serves contact.html (the app's legal text links
+# to https://boundlessfiction.com/contact).
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
 # Browser caching — images are immutable uploads; css/js carry ?v= busting.
 <IfModule mod_expires.c>
   ExpiresActive On

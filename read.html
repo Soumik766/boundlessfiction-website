@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open in Boundless Fiction</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta name="robots" content="noindex">
+<meta name="description" content="Read this story on Boundless Fiction — manga, manhua, comics and stories.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Albert+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --brand: #7B5CF0; --brand-dark: #6344D4; --ink: #1A1A2E; --muted: #666; --bg: #F7F5FF; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+         padding: 24px 16px; background: var(--bg); color: var(--ink);
+         font-family: "Albert Sans", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .card { width: 100%; max-width: 420px; background: #fff; border-radius: 20px; padding: 36px 28px;
+          text-align: center; box-shadow: 0 12px 40px rgba(123, 92, 240, .12); }
+  .logo { width: 72px; height: 72px; border-radius: 18px; }
+  h1 { font-family: "Fraunces", Georgia, serif; font-size: 1.6rem; margin: 18px 0 8px; }
+  p { color: var(--muted); line-height: 1.5; margin: 0 0 28px; }
+  .btn { display: block; width: 100%; padding: 15px 20px; border-radius: 14px; font-weight: 700;
+         font-size: 1rem; text-decoration: none; margin-bottom: 12px; }
+  .primary { background: var(--brand); color: #fff; }
+  .primary:active { background: var(--brand-dark); }
+  .secondary { background: #fff; color: var(--brand); border: 2px solid var(--brand); }
+  .home { display: inline-block; margin-top: 8px; color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<main class="card">
+  <img class="logo" src="/assets/logo.png" alt="Boundless Fiction">
+  <h1>Someone shared a story with you</h1>
+  <p>Read it on Boundless Fiction — manga, manhua, comics and stories, free to start.</p>
+  <a id="open" class="btn primary" href="#">Open in the app</a>
+  <a id="store" class="btn secondary" href="https://play.google.com/store/apps/details?id=com.boundlessfiction.app">Get it on Google Play</a>
+  <a class="home" href="/">boundlessfiction.com</a>
+</main>
+<script>
+  (function () {
+    var PKG = 'com.boundlessfiction.app';
+    var STORE = 'https://play.google.com/store/apps/details?id=' + PKG;
+    var match = location.pathname.match(/^\/read\/([A-Za-z0-9_-]+)\/?$/);
+    var id = match ? match[1] : '';
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    var open = document.getElementById('open');
+
+    if (!isAndroid || !id) {
+      // Only an Android app exists today: send everyone else to the store page.
+      open.hidden = true;
+      return;
+    }
+
+    // Opens the app on this novel if installed (even if App Links verification
+    // hasn't completed); otherwise Chrome follows the fallback to Google Play.
+    var intentUrl = 'intent://boundlessfiction.com/read/' + encodeURIComponent(id) +
+      '#Intent;scheme=https;package=' + PKG +
+      ';S.browser_fallback_url=' + encodeURIComponent(STORE) + ';end';
+    open.href = intentUrl;
+    location.href = intentUrl;
+  })();
+</script>
+</body>
+</html>
